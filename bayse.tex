@@ -1,18 +1,17 @@
-% Sample file for Beamer Class
-% Based on example 3 at http://www2.informatik.uni-freiburg.de/~frank/ENG/latex-course/latex-course-3/latex-course-3_en.html
-% 澍法雨 http://ryogan.org/blog
-% Text Processing using upLaTeX
+
 
 \documentclass[dvipdfmx]{beamer}
-\usepackage{pxjahyper} % cf. http://d.hatena.ne.jp/zrbabbler/20120528/1338221936
-%\usepackage{beamerthemeshadow}
+\usepackage{pxjahyper} 
 \setbeamertemplate{navigation symbols}{} 
-%%% 以下は beamer とは直接関係ない
+
 
 \usepackage{color}
 \usepackage{ulem}
 \usepackage{comment}
-\usetheme{CambridgeUS}  
+\useoutertheme{infolines}                                                                                              
+\usecolortheme{dolphin}
+%\usetheme{Boadilla}
+\setbeamertemplate{items}[default]
 
 \begin{document}
 \title[Basye]{ベイズ推定} 
@@ -99,7 +98,6 @@
    P(A\mid  B) = \frac{ P(B \mid A P(A)}{P(B)} 
  \end{equation} \\
 これが ベイズの定理．導出は意外と簡単.
-%簡単な例題
 }
 
 \frame{\frametitle{変更}
@@ -159,89 +157,119 @@ P(D)は同時確率の和で表現できるので
 }
 \frame{\frametitle{用語の確認}
 \begin{itemize}
-\item P(H|D)
-\item P(D|H\pause 
-\item P(Hu)\pause 
-\item 涅槃寂静
-\end{itemize}
-
-}
-
-
-
-\frame{\frametitle{四法印 (with pause)}
-\begin{itemize}
-	\item 諸行無常
-\item 諸法無我\pause 
-\item 一切皆苦\pause 
-\item 涅槃寂静
+\item $P(H|D)$:事後確率...データDが原因$h_i$ から得られる確率
+\item $P(D|H)$:尤度...原因 $h_i$のもとでデータDが得られる確率\pause 
+\item P(H):事前確率...データDを得る前の原因$h_i$の確かしらさ\pause
 \end{itemize}
 }
 
-
-\subsection{番号付きのリスト}
-\frame{\frametitle{四法印 (with number)}
+\frame{\frametitle{ ベイズ理論の計算ステップ}%順番上げる
 \begin{enumerate}
-\item 諸行無常
-\item 諸法無我
-\item 一切皆苦
-\item 涅槃寂静
+ \item モデル化し，尤度を導出
+ \item 事前確率を設定
+ \item ベイズに公式を用いて事後確率を算出
 \end{enumerate}
 }
-
-
-\frame{\frametitle{四法印 (with number and pause)}
-\begin{enumerate}
-\item 諸行無常\pause 
-\item 諸法無我\pause 
-\item 一切皆苦\pause 
-\item 涅槃寂静
-\end{enumerate}
+\frame{\frametitle{理由不十分の原則}
+形が同じの2つの壺，赤い壺，青い壺，が置いてある．
+赤い壺には白玉2個，赤玉3個が入っていて，青い壺には，白玉4個，赤玉8個入っている．
+壺を一つを選択し，玉を一つを取り出したら，白玉だった．このときの赤い壺から取り出された確率を求めよ．\\
+ $H_r$:赤い壺から取り出す	\pause  \\
+ $H_b$:青い壺から取り出す 	\pause  \\
+ D:取り出した玉が白である．
 }
 
-\section{セクション 3} 
-\subsection{テーブル}
-\frame{\frametitle{三毒}
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{三毒} & \textbf{Sanskrit} & \textbf{Pāli} \\
-\hline
-貪 & rāga & lobha  \\
-\hline
-瞋 & dveṣa & dosa \\
-\hline
-癡 & moha & moha \\
-\hline
-\end{tabular}}
-
-
-\frame{\frametitle{ 三毒 (with pause)}
-\begin{tabular}{c c c}
-貪 & rāga & lobha  \\
-\pause 
-瞋 & dveṣa & dosa \\
-\pause 
-癡 & moha & moha \\
-\end{tabular} }
-
-
-\section{セクション 4}
-\subsection{ブロック}
-\frame{\frametitle{三身 (with pause)}
-
-\begin{block}{法身}
-真如そのもの。代表 = 毘盧遮那仏
-これは下線に\textcolor{red}{\underline{\color{black}{赤色}}}をつけます。\pause 
-\end{block}\pause
-
-\begin{exampleblock}{報身}
-真理のはたらき。あるいは修行して成仏する姿。代表 = 阿弥陀仏
-\end{exampleblock}\pause
-
-
-\begin{alertblock}{応身}
-人々の前に現れる釈迦の姿。代表 = 釈迦牟尼仏
-\end{alertblock}\pause
+\frame{\frametitle{理由不十分の原則}
+べいずの展開公式
+	\begin{equation}
+			P(H_r|D) = \frac{P(D|H_r)P(H_r)}{P(D|H_r)P(H_r) + P(D|H_b)P(H_b) }					     
+	 \end{equation} \\
+尤度を算出:赤い壺から取り出された玉が白である確率 \\
+$P(H_r|D) $= $\frac{2}{5}$ \\
+事前確率の設定 \\
+2つの壺がどの割合で割合で選ばれるかの乗法がないので，事前確率は等確率になるように設定
+$P(H_r) $=$P(H_b) $=$\frac{1}{2}$\\
+\newpage
+今までのことを踏まえて
+	\begin{equation}
+			P(H_r|D) = 	\dfrac {\dfrac {2} {5}\times \dfrac {1} {2}} {\dfrac {2} {5}\times \dfrac {1} {2}+\dfrac {1} {3}\times \dfrac {1} {2}}=\dfrac{6}{11}
+	 \end{equation} 
 }
+
+\frame{\frametitle{理由不十分の原則}
+あとで緑の本を見てかく
+}
+
+
+\frame{\frametitle{ベイズ更新}
+A社の壺には，水晶玉とガラス玉が4:1の割合で入っている．
+B社の壺には，水晶玉とガラス玉が2:3の割合で入っている．壺の見た目は全く同じで壺にはたくさん玉が入っているとする.
+いま，A社製かB社製か不明の壺があり，続けて3回玉を取り出したら，純に 水晶玉，水晶玉，ガラス玉であった．この壺がA社製の確率を求めよ.
+$H_a$:A社製の壺から取り出す\\
+$H_b$:B社製の壺から取り出す 	  \\
+$D_1$=S:取り出した玉が水晶玉 \\
+$D_2$=G:取り出した玉がガラス玉\\
+}
+\frame{\frametitle{ベイズ更新2}
+データは3つの事象が連続になっている．またそれを取り込むためには??
+$\Rightarrow$ ベイズ更新
+ 今回求めるものは
+	\begin{eqnarray}
+		  	P(H_a|S) = \frac{P(S|H_a)P(H_a)}{P(S|H_a)P(H_a) + P(S|H_b)P(H_b) }\\
+		  	P(H_b|S) = \frac{P(S|H_b)P(H_b)}{P(S|H_b)P(H_b) + P(S|H_b)P(H_b) }	\\
+		  	P(H_a|G) = \frac{P(G|H_a)P(H_a)}{P(G|H_a)P(H_a) + P(G|H_a)P(H_a) }	\\
+		  	P(H_b|G) = \frac{P(G|H_b)P(H_b)}{P(G|H_b)P(H_b) + P(G|H_b)P(H_b) }				
+		\end{eqnarray}
+}
+\frame{\frametitle{ベイズ更新2}
+尤度の算出
+\[
+P(S|H_a)= 0.8=4/5  ,  P(G|H_a)= 0.2 , P(S|H_b)=0.4 =2/5 , P(G|H_b)=0.6
+\]
+一回目の玉の取り出し\\
+事前確率の設定\\
+2つの壺の選択各率は不明なので，理由不十分の原則をもちいて，
+\[
+P(H_a)=P(H_b)=0.5
+\] \\
+一回目は水晶玉名尾で
+\[
+P(|H_a)|S)= 2/3  ,  P(H_b|S)= 1/3 
+\]
+}
+\frame{\frametitle{ベイズ更新2}
+二回目の取り出し\\
+二回目の取り出しの取り出しときのどうするか？ここでベイズ更新を使う．
+一回目の事後確率を二回目の分析する際の事前確率として使う．
+(ベイズ更新の使う理由を説明)
+\[
+P(H_a)=2/3 , P(H_b)=1/3  
+\] \\
+二回目の事後確率は
+\[
+P(H_a|S)=0.8 ,P(H_b|S)=0.2
+\]
+となる．
+}
+
+\frame{\frametitle{ベイズ更新2}
+三回目の取り出しも同様に，
+\[
+P(H_a)=0.8 , P(H_b)=0.2  
+\] \\
+三回目の事後確率は
+\[
+P(H_a|G)= 4/7\fallingdotseq(0.571)
+\]
+となる．\\
+%理由不十分の原則からA社製の壺である確率は0.5なので，確率は高まった
+}
+\section{ベイズ統計学}
+
+
+
+
+
+
 
 \end{document}
