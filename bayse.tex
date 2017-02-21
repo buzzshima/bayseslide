@@ -1,0 +1,247 @@
+% Sample file for Beamer Class
+% Based on example 3 at http://www2.informatik.uni-freiburg.de/~frank/ENG/latex-course/latex-course-3/latex-course-3_en.html
+% 澍法雨 http://ryogan.org/blog
+% Text Processing using upLaTeX
+
+\documentclass[dvipdfmx]{beamer}
+\usepackage{pxjahyper} % cf. http://d.hatena.ne.jp/zrbabbler/20120528/1338221936
+%\usepackage{beamerthemeshadow}
+\setbeamertemplate{navigation symbols}{} 
+%%% 以下は beamer とは直接関係ない
+
+\usepackage{color}
+\usepackage{ulem}
+\usepackage{comment}
+\usetheme{CambridgeUS}  
+
+\begin{document}
+\title[Basye]{ベイズ推定} 
+\author[naga]{長島 貴之}            %% ここに書かれた情報は色々なところに使われるｒｄｃｒｄｃ
+%\institute[ｒｄｃ]{rdc}   %% なるべく設定した方が良い
+\date{\today}
+
+ 
+\frame{\titlepage}
+
+\frame{\frametitle{目次}\tableofcontents}
+\section{ベイズと頻出}
+\section{ベイズ理論のための確率論入門} 
+
+\subsection{確率の定義}
+\frame{\frametitle{確率の定義}
+っっっ
+}
+\subsection{確率の記号}
+\frame{\frametitle{確率の記号}
+\ P(A) \ : 事象Aの起こるか確率
+}
+\subsection{確率の記号}
+\frame{\frametitle{確率の記号}
+2つの事象A,Bがあり，同時に起こる事象  
+この事象が起こる確率  $ A  \cap B $
+ \\
+この事象が起こる確率 
+\[
+  P(A \cap B) or P(A,B)
+\]
+と記される(本によってまちまちだが後者多い)
+}
+
+\subsection{条件付きの確率}
+\frame{\frametitle{条件付きの確率}
+ ある事象Aがおこった元で事象Bが起こる確率$ P(A  \mid  B) $\\
+ 例題\\
+ 1組のトランプから１枚抜くとする．抜いたカードがハートである事象をA，絵札である事象Bとしたとき，条件付き確率$ P(A  \mid  B) $ ，$ P(B  \mid A ) $ ,同時確率$  P(A \cap B) $を求めよ．
+ }
+ 
+ \frame{\frametitle{条件付きの確率2}
+  $ P(A  \mid  B) $  抜いたカードが$ \heartsuit $のとき，それが絵札である確率\\
+   $ \heartsuit $は13通りで，その中で絵柄3枚なので $ \frac {3}  {13} $\\
+  $ P(B  \mid  A) $  抜いたカードが絵札のとき，それが $ \heartsuit $である確率\\
+  絵札が12通りで，その中で$ \heartsuit $は３枚なので$ \frac{1}{4}$\\
+  $  P(A \cap B) $  抜いたカードが$ \heartsuit $かつ絵札の確率=$ \frac {3}  {52} $ = $\frac{1}{14}$\\
+  }
+ \frame{\frametitle{条件付きの確率2} 
+  条件付き確率は次の式で表現できる．
+ \begin{equation}
+   P(B  \mid  A) = \frac{ P(A \cap B)}{P(A)} 
+ \end{equation} \\
+ 例題\\
+ 1組のトランプから１枚抜くとする．抜いたカードがハートである事象をA，絵札である事象Bとしたとき，条件付き確率$ P(A  \mid  B) $ ，$ P(B  \mid A ) $ を求めよ.\\
+ P(A)=$ \frac {13}  {52}$,P(B)=$\frac {12}  {52}$, 先のページより $  P(A \cap B) $ = $   \frac {3}  {52} $ 
+ \begin{equation}
+    P(B  \mid  A) = \frac{ P(A \cap B)}{P(A)} = \frac{\frac {3}  {52}}{\frac {13}  {52}}=\frac {3}  {13}
+  \end{equation} \\
+   ※$P(A  \mid B )$も同様なので省略
+ }
+ \subsection{確率の乗法定理}
+ \frame{\frametitle{確率の乗法定理}
+ \begin{equation}
+    P(B  \mid  A) = \frac{ P(A \cap B)}{P(A)} 
+  \end{equation} \\
+  両辺にP(A)を掛けて
+   \begin{equation}
+     P(A \cap B) =P(B  \mid  A)P(A) 
+    \end{equation} \\
+  }
+ %独立書くかも
+\section{ベイズの定理} 
+\subsection{導出}
+\frame{\frametitle{導出}
+\begin{equation}
+     P(A \cap B) =P(B  \mid  A)P(A) 
+  \end{equation} \\
+\begin{equation}
+     P(A \cap B) =P(A  \mid  B)P(B) 
+\end{equation} \\  
+以上 より$ P(A  \mid  B) $について解くと
+ \begin{equation}
+   P(A\mid  B) = \frac{ P(B \mid A P(A)}{P(B)} 
+ \end{equation} \\
+これが ベイズの定理．導出は意外と簡単.
+%簡単な例題
+}
+
+\frame{\frametitle{変更}
+前のページのままだとイメージしづらいので，少し書き換える．
+\begin{equation}
+   P(H\mid  D) = \frac{ P(D \mid H P(H)}{P(D)} 
+ \end{equation} \\
+ Aを原因と仮定(hypotheis),BをAのもとで得られる結果やデータとして置き換えた．
+ }
+\subsection{例題}
+	 \frame{\frametitle{例題1}
+	 男10女7が一室でパーリーを開いた．男子の喫煙者は５，女３である．部屋に入ったら吸い殻が一本，灰皿の上にあった．この時のタバコを吸った人が女性である確率を求めよ．\\ \pause 
+	 \vspace{1zh}
+	 H:女性である 	\pause  \\
+	 D:(タバコを吸った人すなわち)喫煙者である．
+	  }
+
+	 \frame{\frametitle{例題1}
+	 P(H)はパーティーの中で女性である確率，P(D)は喫煙者である確率，$P(D\mid H)$は女性の中で喫煙者である確率\\  \pause
+	 P(H)=$\frac{7}{17}$,P(D)=$\frac{8}{17}$,$P(D\mid H)$ =$\frac{3}{7}$\\
+	 式？に代入すると
+	 \begin{equation}
+	    P(H\mid  D) = \frac{ \frac{7}{17}\times\frac{3}{7}}{\frac{8}{17}} = \frac{3}{8}
+	  \end{equation} \\
+	  タバコを吸った人が女性である確率=$ \frac{3}{8} $
+	  この図はベン図から容易に求められる.
+ }
+ 
+  \frame{\frametitle{ベイズの展開公式}
+データDを得ることができる原因だが普通1つではない．原因がn個あれば $H_1$,$H_2$...$H_n$ とかける．
+原因$H_1$に注目してみる．ベイズの定理のHを$H_1$とき置き換える．
+
+\begin{equation}
+    P(H_1\mid  D) = \frac{ P(D \mid H_1 )P(H_1)}{P(D)}
+ \end{equation} \\
+P(D)は同時確率の和で表現できるので
+\begin{equation}
+   P(D) = P(D, H_1) + P(D, H_2) + \cdots + P(D, H_n)
+ \end{equation} \\
+ と書ける．
+ %図はホワイトボードで書ける
+     
+}
+
+  \frame{\frametitle{ベイズの展開公式2}
+ 乗法の定理より
+ \begin{equation}
+     %P(D) = P(D \mid H_1 )P(H_1)+P(D \mid H_2 )P(H_2 ) +....+P(D \mid H_n )P(H_n)
+     P(D) = P(D|H_1)P(H_1) + P(D|H_2)P(H_2) + \cdots + P(D|H_n)P(H_n)
+  \end{equation} \\
+  (乗法定理より)
+  これを一般化すると
+   \begin{equation}
+       %P(H_i|D) = \frac{P(D|H_i)P(H_i)}{P(D|H_1)P(H_1) + P(D|H_2)P(H_2) + \dots + P(D|H_n)P(H_n)}
+        P(H_i|D) = \frac{P(D|H_i)P(H_i)}{\sum _{i=0}^{n}P\left( D|H_{i}\right) P\left(H_{i}\right)}
+    \end{equation} \\
+}
+\frame{\frametitle{用語の確認}
+\begin{itemize}
+\item P(H|D)
+\item P(D|H\pause 
+\item P(Hu)\pause 
+\item 涅槃寂静
+\end{itemize}
+
+}
+
+
+
+\frame{\frametitle{四法印 (with pause)}
+\begin{itemize}
+	\item 諸行無常
+\item 諸法無我\pause 
+\item 一切皆苦\pause 
+\item 涅槃寂静
+\end{itemize}
+}
+
+
+\subsection{番号付きのリスト}
+\frame{\frametitle{四法印 (with number)}
+\begin{enumerate}
+\item 諸行無常
+\item 諸法無我
+\item 一切皆苦
+\item 涅槃寂静
+\end{enumerate}
+}
+
+
+\frame{\frametitle{四法印 (with number and pause)}
+\begin{enumerate}
+\item 諸行無常\pause 
+\item 諸法無我\pause 
+\item 一切皆苦\pause 
+\item 涅槃寂静
+\end{enumerate}
+}
+
+\section{セクション 3} 
+\subsection{テーブル}
+\frame{\frametitle{三毒}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{三毒} & \textbf{Sanskrit} & \textbf{Pāli} \\
+\hline
+貪 & rāga & lobha  \\
+\hline
+瞋 & dveṣa & dosa \\
+\hline
+癡 & moha & moha \\
+\hline
+\end{tabular}}
+
+
+\frame{\frametitle{ 三毒 (with pause)}
+\begin{tabular}{c c c}
+貪 & rāga & lobha  \\
+\pause 
+瞋 & dveṣa & dosa \\
+\pause 
+癡 & moha & moha \\
+\end{tabular} }
+
+
+\section{セクション 4}
+\subsection{ブロック}
+\frame{\frametitle{三身 (with pause)}
+
+\begin{block}{法身}
+真如そのもの。代表 = 毘盧遮那仏
+これは下線に\textcolor{red}{\underline{\color{black}{赤色}}}をつけます。\pause 
+\end{block}\pause
+
+\begin{exampleblock}{報身}
+真理のはたらき。あるいは修行して成仏する姿。代表 = 阿弥陀仏
+\end{exampleblock}\pause
+
+
+\begin{alertblock}{応身}
+人々の前に現れる釈迦の姿。代表 = 釈迦牟尼仏
+\end{alertblock}\pause
+}
+
+\end{document}
