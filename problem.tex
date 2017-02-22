@@ -1,0 +1,37 @@
+\documentclass[11pt,a4paper]{jsarticle}
+%
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{ascmac}
+%
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{39\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\voffset}{-0.5in}
+\setlength{\headsep}{0.3in}
+%
+\newcommand{\divergence}{\mathrm{div}\,}  %ダイバージェンス
+\newcommand{\grad}{\mathrm{grad}\,}  %グラディエント
+\newcommand{\rot}{\mathrm{rot}\,}  %ローテーション
+%
+\pagestyle{myheadings}
+\markright{\footnotesize \sf ベイズ推定勉強会}
+\begin{document}
+%
+%
+\section*{問1}
+ある事象Aがおこった元で事象Bが起こる確率$ P(A  \mid  B) $\\
+ 例題\\
+ 1組のトランプから１枚抜くとする．抜いたカードがハートである事象をA，絵札である事象Bとしたとき，条件付き確率$ P(A  \mid  B) $ ，$ P(B  \mid A ) $ ,同時確率$  P(A \cap B) $を求めよ．
+\section*{問2}
+形が同じの2つの壺，赤い壺，青い壺，が置いてある．
+赤い壺には白玉2個，赤玉3個が入っていて，青い壺には，白玉4個，赤玉8個入っている．
+壺を一つを選択し，玉を一つを取り出したら，白玉だった．このときの赤い壺から取り出された確率を求めよ．
+\section*{問3}
+A社の壺には，水晶玉とガラス玉が4:1の割合で入っている．
+B社の壺には，水晶玉とガラス玉が2:3の割合で入っている．壺の見た目は全く同じで壺にはたくさん玉が入っているとする.
+いま，A社製かB社製か不明の壺があり，続けて3回玉を取り出したら，順に 水晶玉，水晶玉，ガラス玉であった．この壺がA社製の確率を求めよ.
+\section*{問4}
+ある工場から作られるチョコレート菓子の内容量は正規分布に従い分散は$ 1^2$であり，製品の1つを選んで調べたら，その内容量は101gであった．この時のこの工場から作られる製品内容量の「平均値 $\mu$を求めよ」
+\end{document}

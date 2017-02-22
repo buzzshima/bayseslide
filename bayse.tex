@@ -2,6 +2,7 @@
 
 \documentclass[dvipdfmx]{beamer}
 \usepackage{pxjahyper} 
+
 \setbeamertemplate{navigation symbols}{} 
 
 
@@ -24,17 +25,37 @@
 
 \frame{\frametitle{目次}\tableofcontents}
 \section{ベイズと頻出}
+\vspace{2cm}
+	 \begin{table}[htb]
+\begin{tabular}{l|ll}
+ \hline \hline
+ ｇ & データへの対応&母数(パラメータ)\\ \hline
+ ベイズ&  一期一会に扱う& 確率変数でその分布を調べる\\ \hline
+頻度& たくさんの中の1つ&母集団固有の唯一値を仮定 \\ \hline
+ \end{tabular}
+ \end{table}
+ 
+
+
 \section{ベイズ理論のための確率論入門} 
 
 \subsection{確率の定義}
 \frame{\frametitle{確率の定義}
-っっっ
+例としてサイコロで考える．サイコロを１回投げ，偶数の目が出る確率を調べる.(投げる動作を試行，試行によって得られる結果を事象という)\\ 
+偶数の目が出る確率を求める場合は， 偶数の目が出る事象をAとし，この事象Aの起きる確率ｐは \begin{eqnarray*}
+  p=\frac{\mbox{偶数の目が出る数}}{\mbox{起こり得るすべての場合の数}}=\frac{1}{2}
+\end{eqnarray*}
+一般化すれば
+\begin{eqnarray*}
+  p=\frac{\mbox{事象Aが起こる確率}}{\mbox{起こり得るすべての場合の数}}
+\end{eqnarray*}
+
+
 }
 \subsection{確率の記号}
 \frame{\frametitle{確率の記号}
 \ P(A) \ : 事象Aの起こるか確率
 }
-\subsection{確率の記号}
 \frame{\frametitle{確率の記号}
 2つの事象A,Bがあり，同時に起こる事象  
 この事象が起こる確率  $ A  \cap B $
@@ -60,7 +81,7 @@
   絵札が12通りで，その中で$ \heartsuit $は３枚なので$ \frac{1}{4}$\\
   $  P(A \cap B) $  抜いたカードが$ \heartsuit $かつ絵札の確率=$ \frac {3}  {52} $ = $\frac{1}{14}$\\
   }
- \frame{\frametitle{条件付きの確率2} 
+ \frame{\frametitle{条件付きの確率3} 
   条件付き確率は次の式で表現できる．
  \begin{equation}
    P(B  \mid  A) = \frac{ P(A \cap B)}{P(A)} 
@@ -72,24 +93,26 @@
     P(B  \mid  A) = \frac{ P(A \cap B)}{P(A)} = \frac{\frac {3}  {52}}{\frac {13}  {52}}=\frac {3}  {13}
   \end{equation} \\
    ※$P(A  \mid B )$も同様なので省略
- }
- \subsection{確率の乗法定理}
- \frame{\frametitle{確率の乗法定理}
- \begin{equation}
-    P(B  \mid  A) = \frac{ P(A \cap B)}{P(A)} 
-  \end{equation} \\
-  両辺にP(A)を掛けて
-   \begin{equation}
-     P(A \cap B) =P(B  \mid  A)P(A) 
-    \end{equation} \\
-  }
+}
+\subsection{確率の乗法定理}
+\frame{\frametitle{確率の乗法定理}
+\begin{equation}
+  P(B  \mid  A) = \frac{ P(A \cap B)}{P(A)} 
+\end{equation} \\
+両辺にP(A)を掛けて
+\begin{equation}
+  P(A \cap B) =P(B  \mid  A)P(A) 
+\end{equation} \\
+}
  %独立書くかも
 \section{ベイズの定理} 
 \subsection{導出}
+
 \frame{\frametitle{導出}
+乗法定理をを用いれば簡単に導出できる
 \begin{equation}
      P(A \cap B) =P(B  \mid  A)P(A) 
-  \end{equation} \\
+\end{equation} \\
 \begin{equation}
      P(A \cap B) =P(A  \mid  B)P(B) 
 \end{equation} \\  
@@ -97,7 +120,7 @@
  \begin{equation}
    P(A\mid  B) = \frac{ P(B \mid A P(A)}{P(B)} 
  \end{equation} \\
-これが ベイズの定理．導出は意外と簡単.
+これが ベイズの定理．
 }
 
 \frame{\frametitle{変更}
@@ -107,15 +130,15 @@
  \end{equation} \\
  Aを原因と仮定(hypotheis),BをAのもとで得られる結果やデータとして置き換えた．
  }
-\subsection{例題}
-	 \frame{\frametitle{例題1}
+\subsection{実際やってみる}
+	 \frame{\frametitle{題1}
 	 男10女7が一室でパーリーを開いた．男子の喫煙者は５，女３である．部屋に入ったら吸い殻が一本，灰皿の上にあった．この時のタバコを吸った人が女性である確率を求めよ．\\ \pause 
 	 \vspace{1zh}
 	 H:女性である 	\pause  \\
 	 D:(タバコを吸った人すなわち)喫煙者である．
 	  }
 
-	 \frame{\frametitle{例題1}
+	 \frame{\frametitle{題1}
 	 P(H)はパーティーの中で女性である確率，P(D)は喫煙者である確率，$P(D\mid H)$は女性の中で喫煙者である確率\\  \pause
 	 P(H)=$\frac{7}{17}$,P(D)=$\frac{8}{17}$,$P(D\mid H)$ =$\frac{3}{7}$\\
 	 式？に代入すると
@@ -174,13 +197,13 @@ P(D)は同時確率の和で表現できるので
 形が同じの2つの壺，赤い壺，青い壺，が置いてある．
 赤い壺には白玉2個，赤玉3個が入っていて，青い壺には，白玉4個，赤玉8個入っている．
 壺を一つを選択し，玉を一つを取り出したら，白玉だった．このときの赤い壺から取り出された確率を求めよ．\\
- $H_r$:赤い壺から取り出す	\pause  \\
- $H_b$:青い壺から取り出す 	\pause  \\
+ $H_r$:赤い壺から取り出す	  \\
+ $H_b$:青い壺から取り出す 	  \\
  D:取り出した玉が白である．
 }
 
 \frame{\frametitle{理由不十分の原則}
-べいずの展開公式
+ベイズの展開公式
 	\begin{equation}
 			P(H_r|D) = \frac{P(D|H_r)P(H_r)}{P(D|H_r)P(H_r) + P(D|H_b)P(H_b) }					     
 	 \end{equation} \\
@@ -197,31 +220,31 @@ $P(H_r) $=$P(H_b) $=$\frac{1}{2}$\\
 }
 
 \frame{\frametitle{理由不十分の原則}
-あとで緑の本を見てかく
+壺を選ぶ確率は主観確率になっている．これが頻度主義に敬遠されている理由.
 }
 
 
 \frame{\frametitle{ベイズ更新}
 A社の壺には，水晶玉とガラス玉が4:1の割合で入っている．
 B社の壺には，水晶玉とガラス玉が2:3の割合で入っている．壺の見た目は全く同じで壺にはたくさん玉が入っているとする.
-いま，A社製かB社製か不明の壺があり，続けて3回玉を取り出したら，純に 水晶玉，水晶玉，ガラス玉であった．この壺がA社製の確率を求めよ.
+いま，A社製かB社製か不明の壺があり，続けて3回玉を取り出したら，順に 水晶玉，水晶玉，ガラス玉であった．この壺がA社製の確率を求めよ.
 $H_a$:A社製の壺から取り出す\\
 $H_b$:B社製の壺から取り出す 	  \\
 $D_1$=S:取り出した玉が水晶玉 \\
 $D_2$=G:取り出した玉がガラス玉\\
 }
 \frame{\frametitle{ベイズ更新2}
-データは3つの事象が連続になっている．またそれを取り込むためには??
-$\Rightarrow$ ベイズ更新
+データは3つの事象が連続になっている．またそれを取り込むためには??\\
+$\Rightarrow$ ベイズ更新\\
  今回求めるものは
 	\begin{eqnarray}
 		  	P(H_a|S) = \frac{P(S|H_a)P(H_a)}{P(S|H_a)P(H_a) + P(S|H_b)P(H_b) }\\
 		  	P(H_b|S) = \frac{P(S|H_b)P(H_b)}{P(S|H_b)P(H_b) + P(S|H_b)P(H_b) }	\\
-		  	P(H_a|G) = \frac{P(G|H_a)P(H_a)}{P(G|H_a)P(H_a) + P(G|H_a)P(H_a) }	\\
+		  	P(H_a|G) = \frac{P(G|H_a)P(H_a)}{P(G|H_a)P(H_a) + P(G|H_b)P(H_b) }	\\
 		  	P(H_b|G) = \frac{P(G|H_b)P(H_b)}{P(G|H_b)P(H_b) + P(G|H_b)P(H_b) }				
 		\end{eqnarray}
 }
-\frame{\frametitle{ベイズ更新2}
+\frame{\frametitle{ベイズ更新3}
 尤度の算出
 \[
 P(S|H_a)= 0.8=4/5  ,  P(G|H_a)= 0.2 , P(S|H_b)=0.4 =2/5 , P(G|H_b)=0.6
@@ -232,12 +255,12 @@ P(S|H_a)= 0.8=4/5  ,  P(G|H_a)= 0.2 , P(S|H_b)=0.4 =2/5 , P(G|H_b)=0.6
 \[
 P(H_a)=P(H_b)=0.5
 \] \\
-一回目は水晶玉名尾で
+一回目は水晶玉なので
 \[
 P(|H_a)|S)= 2/3  ,  P(H_b|S)= 1/3 
 \]
 }
-\frame{\frametitle{ベイズ更新2}
+\frame{\frametitle{ベイズ更新4}
 二回目の取り出し\\
 二回目の取り出しの取り出しときのどうするか？ここでベイズ更新を使う．
 一回目の事後確率を二回目の分析する際の事前確率として使う．
@@ -252,7 +275,7 @@ P(H_a|S)=0.8 ,P(H_b|S)=0.2
 となる．
 }
 
-\frame{\frametitle{ベイズ更新2}
+\frame{\frametitle{ベイズ更新5}
 三回目の取り出しも同様に，
 \[
 P(H_a)=0.8 , P(H_b)=0.2  
@@ -265,6 +288,110 @@ P(H_a|G)= 4/7\fallingdotseq(0.571)
 %理由不十分の原則からA社製の壺である確率は0.5なので，確率は高まった
 }
 \section{ベイズ統計学}
+\subsection{確率統計の知識}
+\frame{\frametitle{平均，分散}
+\begin{description}
+ \item[平均]\mbox{}\\ 
+	   データの平均値
+ \item[分散]\mbox{}\\
+	    平均値からの散らばり具合
+ \item[標準偏差]\mbox{}\\
+	    標準偏差は分散の正の平方根（ルート）で定義されます．
+\end{description}
+}
+\subsection{確率統計の知識}
+\frame{\frametitle{確率変数，確率分布}
+\begin{description}
+															 \item[確率変数]\mbox{}\\ 
+																   コイントスという確率変数Xを考える.表はx=1, 裏はx=0としますと，x=X(事象)は
+																   \begin{equation*}
+																   	0=X(\mbox{裏}), 1=X(\mbox{表})					     
+																   	 \end{equation*} \\
+																   	左辺の従属変数の値ｘを実現値という．
+															 \item[確率分布]\mbox{}\\
+															 確率密度の実現値と実現値に付与された確率との対応表
+															 
+															 \begin{table}[htb]
+															 \begin{tabular}{l|ll}
+ \hline \hline
+ 実現値x & 0  & 1\\ \hline
+ 確率ｐ & 1/2&1/2 \\ \hline
+ \end{tabular}
+ \end{table}
+ 
+\end{description}
+
+ }
+
+\frame{\frametitle{連続的な確率変数と確率密度変数}
+確率変数がサイコロの目のように離散的な値をとるならば，表形式で確率分布を示せる．
+しかし連続的な値を取るものは表形式で示せない．\\
+$\Rightarrow$確率密度関数
+}
+\subsection{ベイズ統計学入門}
+\frame{\frametitle{ベイズ統計学における母数の扱い}
+従来の統計学は母数は定数として扱われます.その定数で規定された確率分布
+ベイズ理論では原因Hとしてこの母数を扱う．
+ \begin{equation}
+  P(\theta_i|D) = \frac{P(D|\theta_i)P(\theta_i)}{\sum _{i=0}^{n}P\left( D|\theta_{i}\right) P\left(\theta_{i}\right)}
+ \end{equation} \\
+}
+\frame{\frametitle{母数が連続的な値を取るときのベイズ統計}
+シンプルにするために
+ \begin{equation}
+  P(D)=\sum _{i=0}^{n}P\left( D|\theta_{i}\right) P\left(\theta_{i}\right)
+ \end{equation} \\
+ 
+ \begin{eqnarray}
+  \mbox{事前確率}P(\theta_i) & \Rightarrow &\mbox{事前分布} \pi(\theta) \\
+    \mbox{尤度}P(D|\theta_i) &\Rightarrow &\mbox{尤度} f(D|\theta)  \\
+   \mbox{事後確率}P(\theta_i|D) & \Rightarrow & \mbox{事後分布} \pi(\theta|D)  
+\end{eqnarray}
+ 
+\begin{equation}
+  \pi(\theta|D)= \frac{ f(D|\theta)\pi(\theta) }{P(D)}
+ \end{equation} 
+データを得られた段階ではP(D)は確定をしているので，定数になる. 
+}
+\frame{\frametitle{母数が連続的な値を取るときのベイズ統計2}
+\begin{equation}
+  \pi(\theta|D)= kf(D|\theta)\pi(\theta) 
+ \end{equation} 
+ ｋは定数でP(D) の逆数\\
+ 上記の式からわかるように事後分布は尤度と事前分布に比例している
+ \begin{equation}
+   \pi(\theta|D) \propto f(D|\theta)\pi(\theta) 
+  \end{equation}
+}
+\frame{\frametitle{ベイズ統計例題}
+ある工場から作られるチョコレート菓子の内容量は正規分布に従い分散は$ 1^2$であり，製品の1つを選んで調べたら，その内容量は101gであった．この時のこの工場から作られる製品内容量の「平均値 $\mu$を求めよ」
+}
+\frame{\frametitle{ベイズ統計例題}
+\begin{equation}
+  \pi(\theta|D))= kf(D|\theta)\pi(\theta) 
+ \end{equation} 
+母数 $\theta$には平均値がデータDには内容量x=101が対応します.
+\begin{equation}
+  \pi(\theta|x=101))= kf(x=101|\mu)\pi(\mu) 
+ \end{equation} 
+ 尤度の算出\\
+ 平均値 $\mu$の正規分布に従うでーたから，x=101というデータが取り出される確率密度を表す.すなわち，母数$\mu$をもつ確率密度関数と一致します
+ \begin{equation}
+ % f(x=101|\mu)=\left( \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(101- \mu)^2}{2 \sigma^{2}}}
+ f(x=101|\mu)=\left( \frac{1}{\sqrt{2 \pi }} e^{-\frac{(101- \mu)^2}{2 }} \right)
+  \end{equation} 
+}
+\frame{\frametitle{ベイズ統計例題}
+事前分布の意味\\
+データ得る前に, どの母数を持つ分布が起こりやすいか(選ばれやすいか)を表現するもの．ここでは平均値についてのじょうほうがないので理由不十分の原則より，一様分布を仮定します.
+\[ \pi(\mu)=1\]
+後は計算するだけ
+\begin{equation}
+  \pi(\theta|x=101) \propto  \left( \frac{1}{\sqrt{2 \pi }} e^{-\frac{(101- \mu)^2}{2 }} \right)
+ \end{equation} 
+ 
+}
+
 
 
 
